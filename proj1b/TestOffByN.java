@@ -8,11 +8,10 @@ public class TestOffByN {
 
     // Your tests go here.
     @Test
-    public void TestOffByN() {
+    public void testOffByN() {
         OffByN offBy5 = new OffByN(5);
         assertTrue(offBy5.equalChars('a', 'f'));  // true
         assertTrue(offBy5.equalChars('f', 'a'));  // true
         assertFalse(offBy5.equalChars('f', 'h'));  // false
     }
-//    Uncomment this class once you've created your CharacterComparator interface and OffByOne class. *
 }
