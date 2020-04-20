@@ -17,7 +17,7 @@ public class TestPalindrome {
     }
 
     @Test
-    public void testIdPalinfrome() {
+    public void testIdPalindrome() {
         OffByOne cc = new OffByOne();
         assertFalse(palindrome.isPalindrome("cat"));
         assertTrue(palindrome.isPalindrome(""));
@@ -28,7 +28,6 @@ public class TestPalindrome {
 
         assertTrue(palindrome.isPalindrome("flake", cc));
         assertTrue(palindrome.isPalindrome("ba", cc));
-
 
     }
 }
