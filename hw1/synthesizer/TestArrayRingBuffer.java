@@ -22,6 +22,11 @@ public class TestArrayRingBuffer {
         arb.enqueue(9);
         arb.enqueue(10);
 //        arb.enqueue(11);
+
+        for (Object i : arb) {
+            System.out.println(i);
+        }
+
         assertTrue(arb.isFull());
         assertEquals(1, arb.dequeue());
         assertEquals(2, arb.dequeue());
@@ -36,6 +41,7 @@ public class TestArrayRingBuffer {
         assertEquals(9, arb.dequeue());
         assertEquals(10, arb.dequeue());
         assertTrue(arb.isEmpty());
+
 
 
 
