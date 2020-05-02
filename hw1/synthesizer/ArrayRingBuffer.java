@@ -3,7 +3,7 @@ package synthesizer;
 import java.util.Iterator;
 
 //Make sure to make this class and all of its methods public
-public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> implements Iterable<T>{
+public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
     /* Index for the next dequeue or peek. */
     private int first;            // index for the next dequeue or peek
     /* Index for the next enqueue. */
@@ -14,7 +14,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> implements Itera
     /**
      * Create a new ArrayRingBuffer with the given capacity.
      */
-    public ArrayRingBuffer (int capacity) {
+    public ArrayRingBuffer(int capacity) {
         //  Create new array with capacity elements.
         //       first, last, and fillCount should all be set to 0.
         //       this.capacity should be set appropriately. Note that the local variable
@@ -22,8 +22,8 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> implements Itera
         //       you'll need to use this.capacity to set the capacity.
 
         this.rb = (T[]) new Object[capacity];
-        this.first = capacity/2;
-        this.last = first-1;
+        this.first = capacity / 2;
+        this.last = first - 1;
         this.fillCount = 0;
         this.capacity = capacity;
     }
@@ -34,13 +34,13 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> implements Itera
      * covered Monday.
      */
     public void enqueue(T x) {
-        // TODO: Enqueue the item. Don't forget to increase fillCount and update last.
-        if (fillCount+1 > capacity) {
+        //  Enqueue the item. Don't forget to increase fillCount and update last.
+        if (fillCount + 1 > capacity) {
             throw new RuntimeException("Ring buffer overflow");
         }
 
-        fillCount+=1;
-        if (last+1 > capacity-1) {
+        fillCount += 1;
+        if (last + 1 > capacity - 1) {
             last = 0;
         } else {
             last += 1;
@@ -61,10 +61,10 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> implements Itera
 
         T temp = rb[first];
         fillCount -= 1;
-        if (first+1 > capacity-1) {
+        if (first + 1 > capacity - 1) {
             first = 0;
         } else {
-            first +=1;
+            first += 1;
         }
 
         return temp;
@@ -86,26 +86,26 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> implements Itera
         return new ArrayRingBufferIterator();
     }
 
-    public class ArrayRingBufferIterator implements Iterator<T> {
+    private class ArrayRingBufferIterator implements Iterator<T> {
         int ptr;
 
-        public ArrayRingBufferIterator() {
+        ArrayRingBufferIterator() {
             this.ptr = first;
         }
 
         @Override
         public boolean hasNext() {
-            return !(ptr==last);
+            return !(ptr == last);
         }
 
         @Override
         public T next() {
             T item = rb[ptr];
 
-            if (ptr+1 > capacity-1) {
+            if (ptr + 1 > capacity - 1) {
                 ptr = 0;
             } else {
-                ptr +=1;
+                ptr += 1;
             }
 
             return item;

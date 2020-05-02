@@ -2,7 +2,7 @@ package synthesizer;
 
 import synthesizer.BoundedQueue;
 
-public abstract class AbstractBoundedQueue<T> implements BoundedQueue<T> {
+public abstract class AbstractBoundedQueue<T> implements BoundedQueue<T>, Iterable<T> {
 //    abstract void moveTo(double deltaX, double deltaY);
     protected int fillCount;
     protected int capacity;
